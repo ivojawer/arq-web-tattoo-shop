@@ -1,11 +1,21 @@
 import express from "express";
-import * as usuarioService from "./entities/usuario/usuario.service.js";
-import * as artistaService from "./entities/artista/artista.service.js";
-import * as artistaFavoritoService from "./entities/artistaFavorito/artistaFavorito.service.js";
-import * as tattooService from "./entities/tattoo/tattoo.service.js";
-import * as estiloArtistaService from "./entities/estiloArtista/estiloArtista.service.js";
-import * as estiloTattooService from "./entities/estiloTattoo/estiloTattoo.service.js";
-import * as estiloService from "./entities/estilo/estilo.service.js";
+import context from "./context.js";
+import createUsuarioService from "./entities/usuario/usuario.service.js";
+import createArtistaService from "./entities/artista/artista.service.js";
+import createArtistaFavoritoService from "./entities/artistaFavorito/artistaFavorito.service.js";
+import createTattooService from "./entities/tattoo/tattoo.service.js";
+import createEstiloArtistaService from "./entities/estiloArtista/estiloArtista.service.js";
+import createEstiloTattooService from "./entities/estiloTattoo/estiloTattoo.service.js";
+import createEstiloService from "./entities/estilo/estilo.service.js";
+
+// instantiate services with context
+const usuarioService = createUsuarioService(context);
+const artistaService = createArtistaService(context);
+const artistaFavoritoService = createArtistaFavoritoService(context);
+const tattooService = createTattooService(context);
+const estiloArtistaService = createEstiloArtistaService(context);
+const estiloTattooService = createEstiloTattooService(context);
+const estiloService = createEstiloService(context);
 const app = express();
 const port = 3000;
 
