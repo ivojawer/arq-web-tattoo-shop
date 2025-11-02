@@ -7,6 +7,8 @@ import createTattooService from "./entities/tattoo/tattoo.service.js";
 import createEstiloArtistaService from "./entities/estiloArtista/estiloArtista.service.js";
 import createEstiloTattooService from "./entities/estiloTattoo/estiloTattoo.service.js";
 import createEstiloService from "./entities/estilo/estilo.service.js";
+import swaggerUi from "swagger-ui-express";
+import openapi from "./openapi.json" with { type: "json" };
 
 // instantiate services with context
 const usuarioService = createUsuarioService(context);
@@ -20,6 +22,9 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
+
+// Swagger UI
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(openapi));
 
 app.get("/", (req, res) => res.send("Hello World!"));
 
@@ -56,6 +61,10 @@ registerCrudRoutes("/estilos-artista", estiloArtistaService);
 registerCrudRoutes("/estilos-tattoo", estiloTattooService);
 registerCrudRoutes("/estilos", estiloService);
 
-app.listen(port, () => {
+app.listen(port, (error) => {
+  if(error){
+    console.error('Error starting the server:', error);
+    return;
+  }
   console.log(`Example app listening on port ${port}`);
 });
