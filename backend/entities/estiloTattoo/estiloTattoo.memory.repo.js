@@ -2,6 +2,8 @@
 const estilosTattoo = [
   { id: 1, tattooId: 1, estiloId: 1 },
   { id: 2, tattooId: 2, estiloId: 3 },
+  { id: 3, tattooId: 1, estiloId: 3 },
+  { id: 4, tattooId: 3, estiloId: 2 }
 ];
 
 export const list = () => estilosTattoo;

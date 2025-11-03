@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { api } from "../../api";
+import { TarjetaTattoo } from "./tarjeta-tattoo";
 
 export type Tattoo = {
     id: number,
     name: string,
     image: string,
     description: string,
-    estilos: Array<{ id: number; name: string }>,
+    estilos: Array<{ id: number; name: string, tagColor: string}>,
     artista: { id: number; name: string}
 }
 export const CarreteTattoos = () => {
@@ -18,17 +19,10 @@ export const CarreteTattoos = () => {
   }, [setTattoos]);
 
   return (
-    <div>
-      <h2>Carrete de Tattoos</h2>
-      <div>
+    <div className="flex justify-center">
+      <div className="grid grid-cols-3 gap-4">
         {tattoos ? tattoos.map((tattoo) => (
-          <div key={tattoo.id} >
-            <h3>{tattoo.name}</h3>
-            <img src={tattoo.image} alt={tattoo.name} />
-            <p>{tattoo.description}</p>
-            <p>Artista: {tattoo.artista.name}</p>
-            <p>Estilos: {tattoo.estilos.map(e => e.name).join(', ')}</p>
-          </div>
+          <TarjetaTattoo key={tattoo.id} tattoo={tattoo} />
         )): <p>Cargando tattoos...</p>}
       </div>
     </div>

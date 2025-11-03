@@ -13,6 +13,13 @@ const tattoos = [
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThh1EQ_5yiYTgcXPbNINVOObbOvXmfuq9uRQ&s",
     description: "Otro tatuaje de muestra para pruebas.",
     artistaId: 2
+  },
+  {
+    id: 3,
+    name: "Tatuaje artístico",
+    image: "https://rukminim2.flixcart.com/image/480/640/xif0q/tattoo/w/l/u/5-1-hb-22-temporary-tattoowala-10-original-imaghpqkxq8wjghw.jpeg?q=90",
+    description: "Un tatuaje con un diseño artístico único.",
+    artistaId: 1
   }
 ];
 
