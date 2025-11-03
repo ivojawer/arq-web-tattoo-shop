@@ -1,5 +1,20 @@
 // In-memory repository for Tattoo
-const tattoos = [];
+const tattoos = [
+  {
+    id: 1,
+    name: "Tatuaje de ejemplo",
+    image: "https://m.media-amazon.com/images/I/61wTUUXLnLL.jpg",
+    description: "Un tatuaje de ejemplo para demostrar el repositorio en memoria.",
+    artistaId: 1
+  },
+  {
+    id: 2,
+    name: "Tatuaje de muestra",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThh1EQ_5yiYTgcXPbNINVOObbOvXmfuq9uRQ&s",
+    description: "Otro tatuaje de muestra para pruebas.",
+    artistaId: 2
+  }
+];
 
 export const list = () => tattoos;
 export const getById = (id) => tattoos.find((t) => t.id === id);

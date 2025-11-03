@@ -1,5 +1,8 @@
 // In-memory repository for EstiloArtista (join-like entity)
-const estilosArtista = [];
+const estilosArtista = [
+  {id: 1, artistaId: 1, estiloId: 2},
+  {id: 2, artistaId: 2, estiloId: 1}
+];
 
 export const list = () => estilosArtista;
 export const getById = (id) => estilosArtista.find((e) => e.id === id);

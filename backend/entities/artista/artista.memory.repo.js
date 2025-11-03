@@ -1,5 +1,8 @@
 // In-memory repository for Artista
-const artistas = [];
+const artistas = [
+  {id: 1, name: 'Juan Perez'},
+  {id: 2, name: 'Maria Gomez'}
+];
 
 export const list = () => artistas;
 export const getById = (id) => artistas.find((a) => a.id === id);

@@ -1,7 +1,12 @@
 // In-memory repository for EstiloTattoo (join-like entity)
-const estilosTattoo = [];
+const estilosTattoo = [
+  { id: 1, tattooId: 1, estiloId: 1 },
+  { id: 2, tattooId: 2, estiloId: 3 },
+];
 
 export const list = () => estilosTattoo;
+export const listByTattooIds = (tattooId) =>
+  estilosTattoo.filter((e) => e.tattooId === tattooId);
 export const getById = (id) => estilosTattoo.find((e) => e.id === id);
 export const create = (item) => {
   estilosTattoo.push(item);
