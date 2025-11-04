@@ -4,10 +4,11 @@ export function Welcome() {
   return (
     <main className="flex items-center justify-center pt-16 pb-4">
       <div className="flex-1 flex flex-col items-center gap-16 min-h-0">
-        <header className="flex flex-col items-center gap-9">
+        <header className="flex flex-col items-center gap-2">
           <h1 className="text-4xl font-extrabold text-gray-900 dark:text-gray-100 text-center">
             Bienvenid@
           </h1>
+          <h2 className="text-lg " >Explora nuestra colección de tatuajes</h2>
         </header>
         <div className="flex justify-center">
           <CarreteTattoos />

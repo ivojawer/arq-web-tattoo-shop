@@ -1,4 +1,3 @@
-// In-memory repository for Tattoo
 const tattoos = [
   {
     id: 1,

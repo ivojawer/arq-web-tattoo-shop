@@ -1,4 +1,3 @@
-// In-memory repository for Estilo
 const estilos = [
   {id: 1, name: 'Realismo', tagColor: '#FF5733'},
   {id: 2, name: 'Tradicional', tagColor: '#156b3c'},

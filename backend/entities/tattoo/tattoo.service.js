@@ -12,7 +12,7 @@ export default function createTattooService(context, estiloService, artistaServi
       };
     });
     if (estilosIds && estilosIds.length) {
-      return tattoos.filter((t) => t.estilos && t.estilos.some((e) => estilosIds.includes(String(e.id))));
+      return tattoos.filter((t) => t.estilos && t.estilos.some((e) => estilosIds.includes(e.id)));
     }
     return tattoos;
   };

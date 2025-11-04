@@ -1,4 +1,3 @@
-// In-memory repository for EstiloTattoo (join-like entity)
 const estilosTattoo = [
   { id: 1, tattooId: 1, estiloId: 1 },
   { id: 2, tattooId: 2, estiloId: 3 },

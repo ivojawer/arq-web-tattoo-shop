@@ -4,14 +4,10 @@ import cors from "cors";
 import createArtistaService from "./entities/artista/artista.service.js";
 import createTattooService from "./entities/tattoo/tattoo.service.js";
 import createEstiloService from "./entities/estilo/estilo.service.js";
-import createUsuarioService from "./entities/usuario/usuario.service.js";
-import createArtistaFavoritoService from "./entities/artistaFavorito/artistaFavorito.service.js";
 import createEstiloArtistaService from "./entities/estiloArtista/estiloArtista.service.js";
 import createEstiloTattooService from "./entities/estiloTattoo/estiloTattoo.service.js";
 
-const usuarioService = createUsuarioService(context);
 const artistaService = createArtistaService(context);
-const artistaFavoritoService = createArtistaFavoritoService(context);
 const estiloService = createEstiloService(context);
 const tattooService = createTattooService(context, estiloService, artistaService);
 const estiloArtistaService = createEstiloArtistaService(context);
@@ -19,6 +15,7 @@ const estiloTattooService = createEstiloTattooService(context);
 
 import registerTattooRoutes from './controllers/tattoo.controller.js';
 import registerArtistaRoutes from './controllers/artista.controller.js';
+import registerEstiloRoutes from './controllers/estilo.controller.js';
 
 const app = express();
 const port = 3000;
@@ -29,6 +26,7 @@ app.get("/health", (req, res) => res.send("Hello World!"));
 
 registerTattooRoutes(app, tattooService);
 registerArtistaRoutes(app, artistaService);
+registerEstiloRoutes(app, estiloService);
 
 function errorHandler(err, req, res, next) {
   console.error(err);
