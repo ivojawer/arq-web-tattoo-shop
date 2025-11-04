@@ -1,7 +1,6 @@
-// In-memory repository for Artista
 const artistas = [
-  {id: 1, name: 'Juan Perez'},
-  {id: 2, name: 'Maria Gomez'}
+  { id: 1, name: 'Juan Perez', bio: 'Artista con 10 años de experiencia en tatuajes tradicionales.' },
+  { id: 2, name: 'Maria Gomez', bio: 'Especialista en realismo y retratos, trabaja con clientes desde 2015.' }
 ];
 
 export const list = () => artistas;
