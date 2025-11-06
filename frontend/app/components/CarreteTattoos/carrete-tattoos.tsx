@@ -13,7 +13,7 @@ export type Tattoo = {
 
 export type Estilo = { id: number; name: string; tagColor: string };
 
-export const CarreteTattoos = () => {
+export const CarreteTattoos = ({ artistaId }: { artistaId?: string | number }) => {
   const [tattoos, setTattoos] = useState<Array<Tattoo> | null>(null);
   const [estilos, setEstilos] = useState<Array<Estilo>>([]);
   const [selectedEstilos, setSelectedEstilos] = useState<Array<string>>([]);
@@ -25,11 +25,12 @@ export const CarreteTattoos = () => {
   useEffect(() => {
     const params: any = {};
     if (selectedEstilos && selectedEstilos.length) params.estilosIds = selectedEstilos;
+    if (artistaId) params.artistaId = artistaId;
     setTattoos(null);
     api.get<Array<Tattoo>>('/tattoos', { params }).then(response => {
       setTattoos(response.data);
     });
-  }, [selectedEstilos]);
+  }, [selectedEstilos, artistaId]);
 
   const toggleEstilo = (id: number) => {
     const sid = String(id);

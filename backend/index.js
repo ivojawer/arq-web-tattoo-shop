@@ -4,14 +4,10 @@ import cors from "cors";
 import createArtistaService from "./entities/artista/artista.service.js";
 import createTattooService from "./entities/tattoo/tattoo.service.js";
 import createEstiloService from "./entities/estilo/estilo.service.js";
-import createEstiloArtistaService from "./entities/estiloArtista/estiloArtista.service.js";
-import createEstiloTattooService from "./entities/estiloTattoo/estiloTattoo.service.js";
 
 const artistaService = createArtistaService(context);
 const estiloService = createEstiloService(context);
 const tattooService = createTattooService(context, estiloService, artistaService);
-const estiloArtistaService = createEstiloArtistaService(context);
-const estiloTattooService = createEstiloTattooService(context);
 
 import registerTattooRoutes from './controllers/tattoo.controller.js';
 import registerArtistaRoutes from './controllers/artista.controller.js';

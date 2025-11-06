@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import { ArtistaTag } from "../Artistas/artista-tag";
+import { EstiloTag } from "../estilos/estilo-tag";
 import type { Tattoo } from "./carrete-tattoos";
 
 export const TarjetaTattoo = ({ tattoo }: { tattoo: Tattoo }) => {
@@ -10,10 +10,10 @@ export const TarjetaTattoo = ({ tattoo }: { tattoo: Tattoo }) => {
       <p className="text-sm">{tattoo.description}</p>
       <div className="overflow-scroll flex gap-1.5">
         {tattoo.estilos.map(estilo => (
-          <ArtistaTag key={estilo.id} name={estilo.name} color={estilo.tagColor} />
+          <EstiloTag key={estilo.id} name={estilo.name} color={estilo.tagColor} />
         ))}
       </div>
-        <NavLink to={'artista/' + tattoo.artista.id} className="text-sm hover:underline">{tattoo.artista.name}</NavLink>
+        <NavLink to={'artistas/' + tattoo.artista.id} className="text-sm hover:underline">{tattoo.artista.name}</NavLink>
     </div>
   );
 }

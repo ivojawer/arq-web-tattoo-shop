@@ -1,7 +1,14 @@
 export default function createTattooService(context, estiloService, artistaService) {
   const repo = context.repos.tattoo;
-  const list = (estilosIds) => {
-    const plainTattoos = repo.list();
+  const list = (estilosIds, artistaId) => {
+    // Get raw tattoos from repo
+    let plainTattoos = repo.list();
+
+    // If artistaId provided, filter by artistaId first (compare numeric ids)
+    if (typeof artistaId !== 'undefined' && artistaId !== null) {
+      plainTattoos = plainTattoos.filter((t) => t.artistaId === artistaId);
+    }
+
     const tattoos = plainTattoos.map((tattoo) => {
       const estilos = estiloService.listByTattooId(tattoo.id);
       const artista = artistaService.getById(tattoo.artistaId);
@@ -11,9 +18,11 @@ export default function createTattooService(context, estiloService, artistaServi
         artista: artista ? { id: artista.id, name: artista.name } : null,
       };
     });
+
     if (estilosIds && estilosIds.length) {
       return tattoos.filter((t) => t.estilos && t.estilos.some((e) => estilosIds.includes(e.id)));
     }
+
     return tattoos;
   };
   const getById = (id) => repo.getById(id);

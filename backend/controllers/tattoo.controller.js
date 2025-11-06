@@ -6,7 +6,9 @@ export default function registerTattooRoutes(app, tattooService) {
     .get((req, res, next) => {
       try {
         const ids = parseIds(req.query['estilosIds[]']);
-        const items = tattooService.list(ids);
+        const artistaIdRaw = req.query.artistaId;
+        const artistaId = typeof artistaIdRaw !== 'undefined' ? parseInt(String(artistaIdRaw), 10) : undefined;
+        const items = tattooService.list(ids, isNaN(artistaId) ? undefined : artistaId);
         res.status(200).json(items);
       } catch (err) {
         next(err);

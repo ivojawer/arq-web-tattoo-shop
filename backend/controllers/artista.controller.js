@@ -22,7 +22,7 @@ export default function registerArtistaRoutes(app, artistaService) {
     .route('/artistas/:id')
     .get((req, res, next) => {
       try {
-        const item = artistaService.getById(req.params.id);
+        const item = artistaService.getById(parseInt(req.params.id));
         if (!item) return res.status(404).json({ error: 'Not found' });
         res.status(200).json(item);
       } catch (err) {
