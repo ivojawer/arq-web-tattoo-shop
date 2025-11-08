@@ -52,6 +52,9 @@ export default function createTattooService(context, estiloService, artistaServi
 
     return repo.update(id, patch);
   };
-  const remove = (id) => repo.remove(id);
+  const remove = (id) => {
+    context.repos.estiloTattoo.list().filter((r) => Number(r.tattooId) === Number(id)).forEach((r) => context.repos.estiloTattoo.remove(r.id));
+    return repo.remove(id)
+  };
   return { list, getById, create, update, remove };
 }
