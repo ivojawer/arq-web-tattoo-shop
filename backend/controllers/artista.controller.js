@@ -31,7 +31,7 @@ export default function registerArtistaRoutes(app, artistaService) {
     })
     .put((req, res, next) => {
       try {
-        const updated = artistaService.update(req.params.id, req.body);
+        const updated = artistaService.update(parseInt( req.params.id ), req.body);
         if (!updated) return res.status(404).json({ error: 'Not found' });
         res.json(updated);
       } catch (err) {

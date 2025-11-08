@@ -1,4 +1,5 @@
 import nextId from '../../utils/next-id.js';
+import { NotFoundError } from '../../index.js';
 
 const estilos = [
   { id: 1, name: 'Realismo', tagColor: '#FF5733' },
@@ -11,7 +12,11 @@ const estilos = [
 export const list = () => estilos;
 export const getById = (id) => {
   const nid = Number(id);
-  return estilos.find((e) => Number(e.id) === nid);
+  const estilo = estilos.find((e) => Number(e.id) === nid);
+  if(!estilo){
+    throw new NotFoundError(`Estilo with id ${id} not found`);
+  }
+  return estilo;
 };
 export const create = (item) => {
   const nid = nextId(estilos);

@@ -1,4 +1,5 @@
 import nextId from '../../utils/next-id.js';
+import { NotFoundError } from '../../index.js';
 
 const artistas = [
   { id: 1, name: 'Juan Perez', bio: 'Artista con 10 años de experiencia en tatuajes tradicionales.' },
@@ -8,7 +9,9 @@ const artistas = [
 export const list = () => artistas;
 export const getById = (id) => {
   const nid = Number(id);
-  return artistas.find((a) => Number(a.id) === nid);
+  const item = artistas.find((a) => Number(a.id) === nid);
+  if (!item) throw new NotFoundError(`Artista with id ${id} not found`);
+  return item;
 };
 export const create = (item) => {
   const nid = nextId(artistas);
@@ -19,14 +22,14 @@ export const create = (item) => {
 export const update = (id, patch) => {
   const nid = Number(id);
   const idx = artistas.findIndex((a) => Number(a.id) === nid);
-  if (idx === -1) return null;
+  if (idx === -1) throw new NotFoundError(`Artista with id ${id} not found`);
   artistas[idx] = { ...artistas[idx], ...patch };
   return artistas[idx];
 };
 export const remove = (id) => {
   const nid = Number(id);
   const idx = artistas.findIndex((a) => Number(a.id) === nid);
-  if (idx === -1) return false;
+  if (idx === -1) throw new NotFoundError(`Artista with id ${id} not found`);
   artistas.splice(idx, 1);
   return true;
 };

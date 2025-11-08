@@ -1,9 +1,14 @@
-export default function createTattooService(context, estiloService, artistaService) {
+import { NotFoundError, BadRequestError } from "../../index.js";
+export default function createTattooService(
+  context,
+  estiloService,
+  artistaService
+) {
   const repo = context.repos.tattoo;
   const list = (estilosIds, artistaId) => {
     let plainTattoos = repo.list();
 
-    if (typeof artistaId !== 'undefined' && artistaId !== null) {
+    if (typeof artistaId !== "undefined" && artistaId !== null) {
       plainTattoos = plainTattoos.filter((t) => t.artistaId === artistaId);
     }
 
@@ -12,13 +17,19 @@ export default function createTattooService(context, estiloService, artistaServi
       const artista = artistaService.getById(tattoo.artistaId);
       return {
         ...tattoo,
-        estilos: estilos.map((e) => ({ id: e.id, name: e.name, tagColor: e.tagColor })),
+        estilos: estilos.map((e) => ({
+          id: e.id,
+          name: e.name,
+          tagColor: e.tagColor,
+        })),
         artista: artista ? { id: artista.id, name: artista.name } : null,
       };
     });
 
     if (estilosIds && estilosIds.length) {
-      return tattoos.filter((t) => t.estilos && t.estilos.some((e) => estilosIds.includes(e.id)));
+      return tattoos.filter(
+        (t) => t.estilos && t.estilos.some((e) => estilosIds.includes(e.id))
+      );
     }
 
     return tattoos;
@@ -30,7 +41,18 @@ export default function createTattooService(context, estiloService, artistaServi
 
     if (estilosIds && Array.isArray(estilosIds)) {
       estilosIds.forEach((estiloId) => {
-        context.repos.estiloTattoo.create({ tattooId: Number(created.id), estiloId: Number(estiloId) });
+        let estilo;
+        try {
+          estilo = context.repos.estilo.getById(estiloId);
+        } catch (e) {
+          if (e instanceof NotFoundError) {
+            throw new BadRequestError(e);
+          }
+        }
+        context.repos.estiloTattoo.create({
+          tattooId: Number(created.id),
+          estiloId: Number(estilo.id),
+        });
       });
     }
 
@@ -39,11 +61,24 @@ export default function createTattooService(context, estiloService, artistaServi
 
   const update = (id, patch) => {
     if (patch && Array.isArray(patch.estilosIds)) {
-      const existing = context.repos.estiloTattoo.list().filter((r) => Number(r.tattooId) === Number(id));
+      const existing = context.repos.estiloTattoo
+        .list()
+        .filter((r) => Number(r.tattooId) === Number(id));
       existing.forEach((r) => context.repos.estiloTattoo.remove(r.id));
 
       patch.estilosIds.forEach((estiloId) => {
-        context.repos.estiloTattoo.create({ tattooId: Number(id), estiloId: Number(estiloId) });
+        let estilo;
+        try {
+          estilo = context.repos.estilo.getById(estiloId);
+        } catch (e) {
+          if (e instanceof NotFoundError) {
+            throw new BadRequestError(e);
+          }
+        }
+        context.repos.estiloTattoo.create({
+          tattooId: Number(id),
+          estiloId: Number(estilo.id),
+        });
       });
 
       const { estilosIds, ...rest } = patch;
@@ -53,8 +88,11 @@ export default function createTattooService(context, estiloService, artistaServi
     return repo.update(id, patch);
   };
   const remove = (id) => {
-    context.repos.estiloTattoo.list().filter((r) => Number(r.tattooId) === Number(id)).forEach((r) => context.repos.estiloTattoo.remove(r.id));
-    return repo.remove(id)
+    context.repos.estiloTattoo
+      .list()
+      .filter((r) => Number(r.tattooId) === Number(id))
+      .forEach((r) => context.repos.estiloTattoo.remove(r.id));
+    return repo.remove(id);
   };
   return { list, getById, create, update, remove };
 }

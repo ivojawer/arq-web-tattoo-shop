@@ -1,3 +1,5 @@
+import { BadRequestError, NotFoundError } from "../../index.js";
+
 export default function createArtistaService(context) {
   const repo = context.repos.artista;
   const list = () => {
@@ -32,9 +34,17 @@ export default function createArtistaService(context) {
 
     if (estilosIds && Array.isArray(estilosIds)) {
       estilosIds.forEach((estiloId) => {
+        let estilo;
+        try {
+          estilo = context.repos.estilo.getById(estiloId);
+        } catch (e) {
+          if (e instanceof NotFoundError) {
+            throw new BadRequestError(e);
+          }
+        }
         context.repos.estiloArtista.create({
           artistaId: created.id,
-          estiloId: Number(estiloId),
+          estiloId: Number(estilo.id),
         });
       });
     }
@@ -50,9 +60,17 @@ export default function createArtistaService(context) {
       existing.forEach((r) => context.repos.estiloArtista.remove(r.id));
 
       patch.estilosIds.forEach((estiloId) => {
+        let estilo;
+        try {
+          estilo = context.repos.estilo.getById(estiloId);
+        } catch (e) {
+          if (e instanceof NotFoundError) {
+            throw new BadRequestError(e);
+          }
+        }
         context.repos.estiloArtista.create({
           artistaId: id,
-          estiloId: Number(estiloId),
+          estiloId: estilo.id,
         });
       });
 

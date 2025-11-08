@@ -34,8 +34,16 @@ registerTattooRoutes(app, tattooService);
 registerArtistaRoutes(app, artistaService);
 registerEstiloRoutes(app, estiloService);
 
+export class NotFoundError extends Error {}
+export class BadRequestError extends Error {}
 function errorHandler(err, req, res, next) {
   console.error(err);
+  if (err instanceof NotFoundError) {
+    return res.status(404).json({ error: 'Not found', message: err.message });
+  }
+  if (err instanceof BadRequestError) {
+    return res.status(400).json({ error: 'Bad Request', message: err.message });
+  }
   res.status(500).json({ error: 'Internal Server Error' });
 }
 

@@ -1,4 +1,5 @@
 import nextId from '../../utils/next-id.js';
+import { NotFoundError } from '../../index.js';
 
 const tattoos = [
   {
@@ -27,7 +28,9 @@ const tattoos = [
 export const list = () => tattoos;
 export const getById = (id) => {
   const nid = Number(id);
-  return tattoos.find((t) => Number(t.id) === nid);
+  const item = tattoos.find((t) => Number(t.id) === nid);
+  if (!item) throw new NotFoundError(`Tattoo with id ${id} not found`);
+  return item;
 };
 export const create = (item) => {
   const nid = nextId(tattoos);
@@ -38,14 +41,14 @@ export const create = (item) => {
 export const update = (id, patch) => {
   const nid = Number(id);
   const idx = tattoos.findIndex((t) => Number(t.id) === nid);
-  if (idx === -1) return null;
+  if (idx === -1) throw new NotFoundError(`Tattoo with id ${id} not found`);
   tattoos[idx] = { ...tattoos[idx], ...patch };
   return tattoos[idx];
 };
 export const remove = (id) => {
   const nid = Number(id);
   const idx = tattoos.findIndex((t) => Number(t.id) === nid);
-  if (idx === -1) return false;
+  if (idx === -1) throw new NotFoundError(`Tattoo with id ${id} not found`);
   tattoos.splice(idx, 1);
   return true;
 };
