@@ -1,6 +1,8 @@
 import express from "express";
 import context from "./context.js";
 import cors from "cors";
+import swaggerUi from "swagger-ui-express";
+import YAML from "yamljs";
 import createArtistaService from "./entities/artista/artista.service.js";
 import createTattooService from "./entities/tattoo/tattoo.service.js";
 import createEstiloService from "./entities/estilo/estilo.service.js";
@@ -19,6 +21,14 @@ const port = 3000;
 app.use(express.json(), cors());
 
 app.get("/health", (req, res) => res.send("Hello World!"));
+
+try {
+  const swaggerDocument = YAML.load('./openapi.yaml');
+  app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+  app.get('/openapi.json', (req, res) => res.json(swaggerDocument));
+} catch (err) {
+  console.warn('Swagger UI not available (openapi.yaml load failed):', err.message);
+}
 
 registerTattooRoutes(app, tattooService);
 registerArtistaRoutes(app, artistaService);

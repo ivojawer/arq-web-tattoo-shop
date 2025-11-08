@@ -1,0 +1,393 @@
+# Esto se lo pedi a una AI que lo generara porque no encontre una forma
+# facil de generarlo desde el codigo (en nestjs se puede pero con express vanilla no estoy seguro)
+openapi: 3.0.3
+info:
+  title: Tattoo Shop API
+  version: 1.0.0
+  description: OpenAPI specification for the simple in-memory Tattoo Shop backend.
+servers:
+  - url: http://localhost:3000
+
+paths:
+  /health:
+    get:
+      summary: Health check
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /estilos:
+    get:
+      summary: List estilos
+      responses:
+        '200':
+          description: Array of estilos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Estilo'
+    post:
+      summary: Create estilo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEstiloRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Estilo'
+
+  /estilos/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Get estilo by id
+      responses:
+        '200':
+          description: Estilo found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Estilo'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      summary: Update estilo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEstiloRequest'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Estilo'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      summary: Delete estilo
+      responses:
+        '204':
+          description: Deleted
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /artistas:
+    get:
+      summary: List artistas (each artista includes estilos array)
+      responses:
+        '200':
+          description: Array of artistas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Artista'
+    post:
+      summary: Create artista
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateArtistaRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Artista'
+
+  /artistas/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Get artista by id (includes estilos)
+      responses:
+        '200':
+          description: Artista found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Artista'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      summary: Update artista (can include estilosIds to replace relations)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateArtistaRequest'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Artista'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      summary: Delete artista
+      responses:
+        '204':
+          description: Deleted
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /tattoos:
+    get:
+      summary: List tattoos
+      parameters:
+        - name: estilosIds[]
+          in: query
+          description: Filter by estilos ids (array)
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+            example: [1,2]
+          style: form
+          explode: true
+        - name: artistaId
+          in: query
+          description: Filter tattoos by artista id
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Array of tattoos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tattoo'
+    post:
+      summary: Create tattoo (also persists estilo-tattoo relations)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTattooRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tattoo'
+
+  /tattoos/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Get tattoo by id
+      responses:
+        '200':
+          description: Tattoo found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tattoo'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      summary: Update tattoo (can include estilosIds to replace relations)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTattooRequest'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tattoo'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      summary: Delete tattoo
+      responses:
+        '204':
+          description: Deleted
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+components:
+  schemas:
+    Estilo:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        tagColor:
+          type: string
+      required: [id, name, tagColor]
+
+    CreateEstiloRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        tagColor:
+          type: string
+      required: [name, tagColor]
+
+    UpdateEstiloRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        tagColor:
+          type: string
+
+    Artista:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        bio:
+          type: string
+        estilos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Estilo'
+      required: [id, name]
+
+    CreateArtistaRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        bio:
+          type: string
+        estilosIds:
+          type: array
+          items:
+            type: integer
+      required: [name]
+
+    UpdateArtistaRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        bio:
+          type: string
+        estilosIds:
+          type: array
+          items:
+            type: integer
+
+    Tattoo:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        image:
+          type: string
+          format: uri
+        description:
+          type: string
+        estilos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Estilo'
+        artista:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+      required: [id, name, image]
+
+    CreateTattooRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        image:
+          type: string
+          format: uri
+        description:
+          type: string
+        estilosIds:
+          type: array
+          items:
+            type: integer
+        artistaId:
+          type: integer
+      required: [name, image, artistaId]
+
+    UpdateTattooRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        image:
+          type: string
+          format: uri
+        description:
+          type: string
+        estilosIds:
+          type: array
+          items:
+            type: integer
+        artistaId:
+          type: integer
+
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
