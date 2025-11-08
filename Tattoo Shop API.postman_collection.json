@@ -1,0 +1,1600 @@
+{
+	"info": {
+		"_postman_id": "b3bdfdee-7716-425d-b288-108ce327d706",
+		"name": "Tattoo Shop API",
+		"description": "OpenAPI specification for the simple in-memory Tattoo Shop backend.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11266119"
+	},
+	"item": [
+		{
+			"name": "health",
+			"item": [
+				{
+					"name": "Health check",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/plain"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/health",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "text/plain"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/health",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"health"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": "string"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "estilos",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "Get estilo by id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/estilos/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"estilos",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1063"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Estilo found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/estilos/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"estilos",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 7549,\n  \"name\": \"string\",\n  \"tagColor\": \"string\"\n}"
+								},
+								{
+									"name": "Resource not found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/estilos/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"estilos",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"string\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Update estilo",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"string\",\n  \"tagColor\": \"string\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/estilos/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"estilos",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1063"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Updated",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"string\",\n  \"tagColor\": \"string\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/estilos/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"estilos",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 7549,\n  \"name\": \"string\",\n  \"tagColor\": \"string\"\n}"
+								},
+								{
+									"name": "Resource not found",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"string\",\n  \"tagColor\": \"string\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/estilos/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"estilos",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"string\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete estilo",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/estilos/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"estilos",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1063"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Deleted",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/estilos/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"estilos",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Resource not found",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/estilos/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"estilos",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"string\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "List estilos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/estilos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"estilos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Array of estilos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/estilos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"estilos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"id\": 2408,\n    \"name\": \"string\",\n    \"tagColor\": \"string\"\n  },\n  {\n    \"id\": 9119,\n    \"name\": \"string\",\n    \"tagColor\": \"string\"\n  }\n]"
+						}
+					]
+				},
+				{
+					"name": "Create estilo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"string\",\n  \"tagColor\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/estilos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"estilos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"string\",\n  \"tagColor\": \"string\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/estilos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"estilos"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": 7549,\n  \"name\": \"string\",\n  \"tagColor\": \"string\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "artistas",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "Get artista by id (includes estilos)",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/artistas/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"artistas",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1063"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Artista found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/artistas/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"artistas",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 8489,\n  \"name\": \"string\",\n  \"bio\": \"string\",\n  \"estilos\": [\n    {\n      \"id\": 9027,\n      \"name\": \"string\",\n      \"tagColor\": \"string\"\n    },\n    {\n      \"id\": 9140,\n      \"name\": \"string\",\n      \"tagColor\": \"string\"\n    }\n  ]\n}"
+								},
+								{
+									"name": "Resource not found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/artistas/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"artistas",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"string\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Update artista (can include estilosIds to replace relations)",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"string\",\n  \"bio\": \"string\",\n  \"estilosIds\": [\n    8658,\n    6442\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/artistas/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"artistas",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1063"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Updated",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"string\",\n  \"bio\": \"string\",\n  \"estilosIds\": [\n    8658,\n    6442\n  ]\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/artistas/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"artistas",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 8489,\n  \"name\": \"string\",\n  \"bio\": \"string\",\n  \"estilos\": [\n    {\n      \"id\": 9027,\n      \"name\": \"string\",\n      \"tagColor\": \"string\"\n    },\n    {\n      \"id\": 9140,\n      \"name\": \"string\",\n      \"tagColor\": \"string\"\n    }\n  ]\n}"
+								},
+								{
+									"name": "Resource not found",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"string\",\n  \"bio\": \"string\",\n  \"estilosIds\": [\n    8658,\n    6442\n  ]\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/artistas/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"artistas",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"string\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete artista",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/artistas/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"artistas",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1063"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Deleted",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/artistas/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"artistas",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Resource not found",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/artistas/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"artistas",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"string\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "List artistas (each artista includes estilos array)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/artistas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"artistas"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Array of artistas",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/artistas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"artistas"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"id\": 9476,\n    \"name\": \"string\",\n    \"bio\": \"string\",\n    \"estilos\": [\n      {\n        \"id\": 5773,\n        \"name\": \"string\",\n        \"tagColor\": \"string\"\n      },\n      {\n        \"id\": 4490,\n        \"name\": \"string\",\n        \"tagColor\": \"string\"\n      }\n    ]\n  },\n  {\n    \"id\": 4484,\n    \"name\": \"string\",\n    \"bio\": \"string\",\n    \"estilos\": [\n      {\n        \"id\": 5629,\n        \"name\": \"string\",\n        \"tagColor\": \"string\"\n      },\n      {\n        \"id\": 5103,\n        \"name\": \"string\",\n        \"tagColor\": \"string\"\n      }\n    ]\n  }\n]"
+						}
+					]
+				},
+				{
+					"name": "Create artista",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"string\",\n  \"bio\": \"string\",\n  \"estilosIds\": [\n    1409,\n    9691\n  ]\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/artistas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"artistas"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"string\",\n  \"bio\": \"string\",\n  \"estilosIds\": [\n    1409,\n    9691\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/artistas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"artistas"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": 8489,\n  \"name\": \"string\",\n  \"bio\": \"string\",\n  \"estilos\": [\n    {\n      \"id\": 9027,\n      \"name\": \"string\",\n      \"tagColor\": \"string\"\n    },\n    {\n      \"id\": 9140,\n      \"name\": \"string\",\n      \"tagColor\": \"string\"\n    }\n  ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "tattoos",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "Get tattoo by id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/tattoos/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"tattoos",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1063"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Tattoo found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/tattoos/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"tattoos",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 3471,\n  \"name\": \"string\",\n  \"image\": \"https://IQlXKgoRExcVkULP.qovHw3BmaBAcxeo4PQhMuwW6ei2YdD-1woq\",\n  \"description\": \"string\",\n  \"estilos\": [\n    {\n      \"id\": 6245,\n      \"name\": \"string\",\n      \"tagColor\": \"string\"\n    },\n    {\n      \"id\": 6473,\n      \"name\": \"string\",\n      \"tagColor\": \"string\"\n    }\n  ],\n  \"artista\": {\n    \"id\": 7556,\n    \"name\": \"string\"\n  }\n}"
+								},
+								{
+									"name": "Resource not found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/tattoos/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"tattoos",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"string\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Update tattoo (can include estilosIds to replace relations)",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"string\",\n  \"image\": \"https://qBBRViVMYTBeHxPWG.vjicg+pb-v.iA7XbjV4UH9.kR+MCRDNFnpi,WDp1X,ZAFtWfatlvDZk.23,-oDEU4PW\",\n  \"description\": \"string\",\n  \"estilosIds\": [\n    4379,\n    5099\n  ],\n  \"artistaId\": 2129\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/tattoos/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"tattoos",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1063"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Updated",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"string\",\n  \"image\": \"https://qBBRViVMYTBeHxPWG.vjicg+pb-v.iA7XbjV4UH9.kR+MCRDNFnpi,WDp1X,ZAFtWfatlvDZk.23,-oDEU4PW\",\n  \"description\": \"string\",\n  \"estilosIds\": [\n    4379,\n    5099\n  ],\n  \"artistaId\": 2129\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/tattoos/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"tattoos",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 3471,\n  \"name\": \"string\",\n  \"image\": \"https://IQlXKgoRExcVkULP.qovHw3BmaBAcxeo4PQhMuwW6ei2YdD-1woq\",\n  \"description\": \"string\",\n  \"estilos\": [\n    {\n      \"id\": 6245,\n      \"name\": \"string\",\n      \"tagColor\": \"string\"\n    },\n    {\n      \"id\": 6473,\n      \"name\": \"string\",\n      \"tagColor\": \"string\"\n    }\n  ],\n  \"artista\": {\n    \"id\": 7556,\n    \"name\": \"string\"\n  }\n}"
+								},
+								{
+									"name": "Resource not found",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"string\",\n  \"image\": \"https://qBBRViVMYTBeHxPWG.vjicg+pb-v.iA7XbjV4UH9.kR+MCRDNFnpi,WDp1X,ZAFtWfatlvDZk.23,-oDEU4PW\",\n  \"description\": \"string\",\n  \"estilosIds\": [\n    4379,\n    5099\n  ],\n  \"artistaId\": 2129\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/tattoos/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"tattoos",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"string\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete tattoo",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/tattoos/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"tattoos",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1063"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Deleted",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/tattoos/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"tattoos",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Resource not found",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/tattoos/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"tattoos",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"string\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "List tattoos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tattoos?estilosIds[]=1&estilosIds[]=2&artistaId=1063",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tattoos"
+							],
+							"query": [
+								{
+									"key": "estilosIds[]",
+									"value": "1",
+									"description": "Filter by estilos ids (array)"
+								},
+								{
+									"key": "estilosIds[]",
+									"value": "2",
+									"description": "Filter by estilos ids (array)"
+								},
+								{
+									"key": "artistaId",
+									"value": "1063",
+									"description": "Filter tattoos by artista id"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Array of tattoos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/tattoos?estilosIds[]=2&artistaId=1063",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"tattoos"
+									],
+									"query": [
+										{
+											"key": "estilosIds[]",
+											"value": "2",
+											"description": "Filter by estilos ids (array)"
+										},
+										{
+											"key": "artistaId",
+											"value": "1063",
+											"description": "Filter tattoos by artista id"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"id\": 8125,\n    \"name\": \"string\",\n    \"image\": \"http://nwlcNUjEjXyYUrTN.pempl6POvuHmD0NGN\",\n    \"description\": \"string\",\n    \"estilos\": [\n      {\n        \"id\": 7680,\n        \"name\": \"string\",\n        \"tagColor\": \"string\"\n      },\n      {\n        \"id\": 2078,\n        \"name\": \"string\",\n        \"tagColor\": \"string\"\n      }\n    ],\n    \"artista\": {\n      \"id\": 6593,\n      \"name\": \"string\"\n    }\n  },\n  {\n    \"id\": 9516,\n    \"name\": \"string\",\n    \"image\": \"https://I.quczqHddd6dqsmeNswTa\",\n    \"description\": \"string\",\n    \"estilos\": [\n      {\n        \"id\": 8612,\n        \"name\": \"string\",\n        \"tagColor\": \"string\"\n      },\n      {\n        \"id\": 9922,\n        \"name\": \"string\",\n        \"tagColor\": \"string\"\n      }\n    ],\n    \"artista\": {\n      \"id\": 7928,\n      \"name\": \"string\"\n    }\n  }\n]"
+						}
+					]
+				},
+				{
+					"name": "Create tattoo (also persists estilo-tattoo relations)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"string\",\n  \"image\": \"http://aLKTIqDBppTuNJVOToHPHJINMroXg.yqqzBQ8QSjJ-YlObQn0VZZ9DHJby8WXBSvsgqMRXnKZ6o1Wx\",\n  \"artistaId\": 5951,\n  \"description\": \"string\",\n  \"estilosIds\": [\n    1370,\n    7102\n  ]\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/tattoos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tattoos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"string\",\n  \"image\": \"http://aLKTIqDBppTuNJVOToHPHJINMroXg.yqqzBQ8QSjJ-YlObQn0VZZ9DHJby8WXBSvsgqMRXnKZ6o1Wx\",\n  \"artistaId\": 5951,\n  \"description\": \"string\",\n  \"estilosIds\": [\n    1370,\n    7102\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/tattoos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"tattoos"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": 3471,\n  \"name\": \"string\",\n  \"image\": \"https://IQlXKgoRExcVkULP.qovHw3BmaBAcxeo4PQhMuwW6ei2YdD-1woq\",\n  \"description\": \"string\",\n  \"estilos\": [\n    {\n      \"id\": 6245,\n      \"name\": \"string\",\n      \"tagColor\": \"string\"\n    },\n    {\n      \"id\": 6473,\n      \"name\": \"string\",\n      \"tagColor\": \"string\"\n    }\n  ],\n  \"artista\": {\n    \"id\": 7556,\n    \"name\": \"string\"\n  }\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000"
+		}
+	]
+}

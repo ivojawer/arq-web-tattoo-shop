@@ -80,6 +80,12 @@ export default function createArtistaService(context) {
 
     return repo.update(id, patch);
   };
-  const remove = (id) => repo.remove(id);
+  const remove = (id) => {
+    context.repos.estiloArtista
+      .list()
+      .filter((r) => r.artistaId === id)
+      .forEach((r) => context.repos.estiloArtista.remove(r.id));
+    return repo.remove(id);
+  };
   return { list, getById, create, update, remove };
 }
