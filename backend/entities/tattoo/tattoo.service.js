@@ -1,10 +1,8 @@
 export default function createTattooService(context, estiloService, artistaService) {
   const repo = context.repos.tattoo;
   const list = (estilosIds, artistaId) => {
-    // Get raw tattoos from repo
     let plainTattoos = repo.list();
 
-    // If artistaId provided, filter by artistaId first (compare numeric ids)
     if (typeof artistaId !== 'undefined' && artistaId !== null) {
       plainTattoos = plainTattoos.filter((t) => t.artistaId === artistaId);
     }
@@ -27,11 +25,33 @@ export default function createTattooService(context, estiloService, artistaServi
   };
   const getById = (id) => repo.getById(id);
   const create = (data) => {
-    const id = Date.now().toString();
-    const item = { id, ...data };
-    return repo.create(item);
+    const { estilosIds, ...rest } = data || {};
+    const created = repo.create(rest);
+
+    if (estilosIds && Array.isArray(estilosIds)) {
+      estilosIds.forEach((estiloId) => {
+        context.repos.estiloTattoo.create({ tattooId: Number(created.id), estiloId: Number(estiloId) });
+      });
+    }
+
+    return created;
   };
-  const update = (id, patch) => repo.update(id, patch);
+
+  const update = (id, patch) => {
+    if (patch && Array.isArray(patch.estilosIds)) {
+      const existing = context.repos.estiloTattoo.list().filter((r) => Number(r.tattooId) === Number(id));
+      existing.forEach((r) => context.repos.estiloTattoo.remove(r.id));
+
+      patch.estilosIds.forEach((estiloId) => {
+        context.repos.estiloTattoo.create({ tattooId: Number(id), estiloId: Number(estiloId) });
+      });
+
+      const { estilosIds, ...rest } = patch;
+      return repo.update(id, rest);
+    }
+
+    return repo.update(id, patch);
+  };
   const remove = (id) => repo.remove(id);
   return { list, getById, create, update, remove };
 }

@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router";
 import { CarreteTattoos } from "../CarreteTattoos/carrete-tattoos";
 
 export function Welcome() {
+  const navigate =useNavigate()
   return (
     <main className="flex items-center justify-center pt-16 pb-4">
       <div className="flex-1 flex flex-col items-center gap-16 min-h-0">
@@ -13,6 +15,7 @@ export function Welcome() {
         <div className="flex justify-center">
           <CarreteTattoos />
         </div>
+        <button onClick={() => navigate("/admin/create-tattoo")}>Crear tattoo</button>
       </div>
     </main>
   );
